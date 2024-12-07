@@ -4,7 +4,7 @@ This is the solutions for the Metrobi Job Test.
 
 ## Instructions
 
-There are 2 questions that the solution is inside the respective folders, question 3 and 6.
+In this repository, there are 2 questions which the solutions are inside the respective folders, question 3 and 6.
 
 `Question 3` is a simple React app, so you can enter the folder, check the instructions and run the code to see the solution.
 
@@ -23,3 +23,5 @@ Also, for question 7, you can check the solution in the python file by running:
 ```bash
 python3 Question_7.py
 ```
+
+### I hope you like it!
