@@ -1,6 +1,6 @@
 # Metrobi Job Test
 
-This is the solutions for the Metrobi Job Test.
+This is the repository containing the solutions for the Metrobi Job Test `Dec/2024`.
 
 ## Instructions
 
