@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeno's Paradox - Improved Loop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .track {
+            position: relative;
+            width: 90%;
+            height: 60px;
+            background: #ddd;
+            margin: 50px auto;
+            border-radius: 30px;
+            overflow: visible;
+        }
+        .achilles, .tortoise {
+            position: absolute;
+            top: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .achilles {
+            background: #cc0000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+        .tortoise {
+            background: #038f49;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+        .marker {
+            position: absolute;
+            top: -20px;
+            width: 2px;
+            height: 100px;
+            background: #999;
+            z-index: 1;
+        }
+        .marker::after {
+            content: attr(data-distance);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #666;
+        }
+        .info {
+            margin: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Zeno's Paradox of Achilles and the Tortoise</h1>
+    <div class="track" id="track">
+        <div class="achilles" id="achilles"></div>
+        <div class="tortoise" id="tortoise"></div>
+    </div>
+    <div class="info">
+        <p>Achilles (red) tries to catch the tortoise (green), but can never quite reach it!</p>
+        <p>Each time Achilles moves half the remaining distance, while the tortoise moves forward slightly.</p>
+    </div>
+    <script>
+        const achilles = document.getElementById('achilles');
+        const tortoise = document.getElementById('tortoise');
+        const track = document.getElementById('track');
+        
+        // Initial positions
+        let trackWidth = track.clientWidth;
+        let achillesPos = 0;  // Start Achilles at the beginning
+        let tortoisePos = trackWidth * 0.25;  // Tortoise starts at 25% of track
+
+        const tortoiseSpeed = 2;
+        let achillesSpeed = 10;
+
+        function animateRace() {
+            // Move the runners
+            if (achillesPos < tortoisePos) {
+                achillesPos += achillesSpeed;
+            }
+            // Move the tortoise
+            tortoisePos += tortoiseSpeed;
+            // Decrease Achilles' speed slightly
+            achillesSpeed *= 0.98;
+            // Update positions
+            achilles.style.left = `${achillesPos}px`;
+            tortoise.style.left = `${tortoisePos}px`;
+
+            // Check if the race is over
+            if (achillesPos >= trackWidth - 40 || tortoisePos >= trackWidth - 40) {
+                achillesPos = 0;
+                tortoisePos = trackWidth * 0.25;
+                achillesSpeed = 10;
+            }
+            setTimeout(requestAnimationFrame(animateRace), 500);
+        }
+        animateRace();
+    </script>
+</body>
+</html>
